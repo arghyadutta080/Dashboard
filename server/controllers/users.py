@@ -32,6 +32,7 @@ def signIn_user(request: user.UserLogin, db: Session):
         else:
             password_match = Hash.password_verify(request.password, user.hashed_password)
             if password_match:
+                # create jwt token
                 return user
             else: 
                 raise HTTPException(
