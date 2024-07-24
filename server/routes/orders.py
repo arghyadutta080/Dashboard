@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import Annotated
 from ..utils import getDB
-from ..schemas import user, product, order
-from ..controllers import products, orders
+from ..schemas import user, order
+from ..controllers import orders
 from . import users
 
 

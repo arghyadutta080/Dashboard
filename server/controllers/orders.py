@@ -1,8 +1,7 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from ..models import Product, Order
-from ..schemas import user, product, order
-from datetime import date
+from ..schemas import user, order
 
 
 def place_order(request: order.OrderCreate, db: Session):

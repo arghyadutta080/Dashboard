@@ -50,6 +50,6 @@ class Sell(Base):
     __tablename__ = "sells"
 
     id = Column(Integer, ForeignKey("orders.id"), primary_key=True)
-    delivery_date = Column(Date)
+    delivery_date = Column(String, default=datetime.today().strftime('%Y-%m-%d'))
 
     order = relationship("Order", back_populates="sell")
