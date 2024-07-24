@@ -1,6 +1,7 @@
 // Update in parentDash.tsx
 import React from 'react';
-import Card from "./card";
+import Card from './Card';
+
 
 const Dashboard = () => {
   const items = [

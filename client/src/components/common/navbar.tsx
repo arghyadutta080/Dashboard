@@ -7,10 +7,7 @@ import Link from "next/link";
 
 const FlipNavWrapper = () => {
   return (
-    
       <FlipNav />
-      
-    
   );
 };
 

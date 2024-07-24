@@ -1,10 +1,10 @@
 "use client";
+
 import React  from 'react';
 import { useState } from 'react';
 
 function SignUpForm() {
     const [password, setPassword] = useState('');
-  
     const isPasswordValid = password.length >= 6;
   
   return (

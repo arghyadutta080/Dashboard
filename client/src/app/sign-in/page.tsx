@@ -1,5 +1,5 @@
 "use client"
-import SignIn from "@/components/login/signIn";
+import SignIn from "@/components/login/SignIn";
 
 const SignInPage: React.FC = () => {
     return(

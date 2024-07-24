@@ -1,5 +1,5 @@
 "use client"
-import SignUpForm from "@/components/login/signUp";
+import SignUpForm from "@/components/login/SignUp";
 
 const SignUpPage: React.FC = () => {
     return(
