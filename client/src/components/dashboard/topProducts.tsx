@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FiAward, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { userData } from "../../../utils/constants/userData";
+import { User } from "../../../utils/types/userData";
 
 const ShuffleSortTable = () => {
   return (
@@ -153,56 +155,3 @@ const numberToOrdinal = (n: number) => {
 
   return n + ord;
 };
-
-interface User {
-  id: number;
-  name: string;
-  contact: string;
-  photoURL: string;
-  maxRank: number;
-  status: string;
-}
-
-const userData: User[] = [
-  {
-    id: 1,
-    name: "Andrea Thompson",
-    contact: "andythompson@example.com",
-    photoURL: "/imgs/head-shots/1.jpg",
-    maxRank: 112,
-    status: "online",
-  },
-  {
-    id: 2,
-    name: "Thomas Smith",
-    contact: "tsmith@example.com",
-    photoURL: "/imgs/head-shots/5.jpg",
-    maxRank: 41,
-    status: "online",
-  },
-  {
-    id: 3,
-    name: "John Anderson",
-    contact: "john.a@example.com",
-    photoURL: "/imgs/head-shots/2.jpg",
-    maxRank: 9,
-    status: "offline",
-  },
-
-  {
-    id: 4,
-    name: "Craig Peterson",
-    contact: "craigpeterson@example.com",
-    photoURL: "/imgs/head-shots/6.jpg",
-    maxRank: 1,
-    status: "online",
-  },
-  {
-    id: 5,
-    name: "Jen Horowitz",
-    contact: "j.horowitz@example.com",
-    photoURL: "/imgs/head-shots/3.jpg",
-    maxRank: 9999,
-    status: "pending",
-  },
-];
