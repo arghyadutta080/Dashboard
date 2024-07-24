@@ -1,8 +1,10 @@
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from ..models import User
 from ..schemas import user
-from ..utils import Hash
+from ..utils import Hash, jwtToken
+from typing import Annotated
 
 
 def signUp_user(request: user.UserCreate, db: Session):
@@ -24,19 +26,32 @@ def signUp_user(request: user.UserCreate, db: Session):
             status_code=status.HTTP_206_PARTIAL_CONTENT, detail="Fill up all fields")
 
 
-def signIn_user(request: user.UserLogin, db: Session):
-    if (request.email and request.password):
-        user = db.query(User).filter(User.email == request.email).first()
+def signIn_user(request: Annotated[OAuth2PasswordRequestForm, Depends()], db: Session):
+    if (request.username and request.password):
+        user = db.query(User).filter(User.email == request.username).first()
         if not user:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Wrong Credentials")
         else:
             password_match = Hash.password_verify(request.password, user.hashed_password)
             if password_match:
                 # create jwt token
-                return user
+                access_token = jwtToken.create_access_token(data={"sub": request.username})
+                token = jwtToken.Token(
+                    access_token=access_token, token_type="bearer")
+                return token
             else: 
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED, detail="Wrong Credentials")
     else:
         raise HTTPException(
             status_code=status.HTTP_206_PARTIAL_CONTENT, detail="Fill up all fields")
+
+
+def get_current_user(token, db: Session):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+
+    return jwtToken.verify_token(db, token, credentials_exception)
