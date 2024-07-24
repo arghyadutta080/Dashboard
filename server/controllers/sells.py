@@ -8,9 +8,10 @@ def mark_as_delivered(request: sell.SellCreate, user: user.User, db: Session):
     if user.role == "ADMIN":
         if (request.id and request.delivery_date):
             order = db.query(Order).filter(Order.id == request.id)
-            if order is None:
+            order_data = order.first()
+            if order_data is None:
                 raise HTTPException(
-                status_code=status.HTTP_204_NO_CONTENT, detail="No such order in database")
+                    status_code=status.HTTP_404_NOT_FOUND, detail="No such order in database")
             else:
                 order.update({"delivered": True})
                 delivered_order = Sell(id=request.id, delivery_date=request.delivery_date)

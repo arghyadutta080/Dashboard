@@ -14,6 +14,7 @@ class OrderCreate(OrderBase):
 
 
 class Order(OrderBase):
+    id: int
     delivered: bool
     customer: user.User
     product: product.ProductDelivery
