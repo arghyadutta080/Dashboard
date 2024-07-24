@@ -6,9 +6,10 @@ from ..schemas import user
 from ..controllers import users
 from typing import Annotated
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="user/login")
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="user/login")
 router = APIRouter(prefix="/user", tags=["Users"])
+
 
 @router.post('/signup', response_model=user.User)
 def signup(request: user.UserCreate, db: Session = Depends(getDB.get_db)):

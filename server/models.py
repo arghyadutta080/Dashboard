@@ -25,6 +25,7 @@ class Product(Base):
     name = Column(String, index=True)
     description = Column(String, index=True)
     price = Column(DECIMAL)
+    quantity = Column(Integer, default=1)
 
     orders = relationship("Order")
     
