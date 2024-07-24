@@ -16,5 +16,5 @@ def add_product(request: product.ProductCreate, current_user: Annotated[user.Use
 
 
 @router.get('/all')
-def get_all_products(current_user: Annotated[user.User, Depends(users.get_user_profile)], db: Session = Depends(getDB.get_db)):
+def view_all_products(current_user: Annotated[user.User, Depends(users.get_user_profile)], db: Session = Depends(getDB.get_db)):
     return products.get_products(user=current_user, db=db)

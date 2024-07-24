@@ -1,5 +1,6 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, DECIMAL
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 from .database import Base
 
@@ -34,7 +35,7 @@ class Order(Base):
     __tablename__ = "orders"
 
     id = Column(Integer, primary_key=True)
-    order_date = Column(Date)
+    order_date = Column(String, default=datetime.today().strftime('%Y-%m-%d'))
     customer_id = Column(Integer, ForeignKey("users.id"))
     product_id = Column(Integer, ForeignKey("products.id"))
     quantity = Column(Integer)

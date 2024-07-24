@@ -1,11 +1,7 @@
-from fastapi import HTTPException, status, Depends
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
-from sqlalchemy import func
-from ..models import User, Product
+from ..models import Product
 from ..schemas import user, product
-from ..utils import Hash, jwtToken
-from typing import Annotated
 
 
 def add_products(request: product.ProductCreate, user: user.User, db: Session):
