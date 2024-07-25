@@ -9,7 +9,6 @@ class OrderBase(BaseModel):
 
 
 class OrderCreate(OrderBase):
-    customer_id: int
     product_id: int
 
 

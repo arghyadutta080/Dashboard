@@ -1,6 +1,4 @@
-// Update in Card.tsx
 import React from 'react';
-
 
 interface CardProps {
     item: {

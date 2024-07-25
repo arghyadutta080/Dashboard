@@ -11,8 +11,8 @@ router = APIRouter(prefix="/order", tags=["Order Product"])
 
 
 @router.post('/place', response_model=order.Order)
-def place_new_order(request: order.OrderCreate,  db: Session = Depends(getDB.get_db)):
-    return orders.place_order(request=request,  db=db)
+def place_new_order(request: order.OrderCreate, current_user: Annotated[user.User, Depends(users.get_user_profile)], db: Session = Depends(getDB.get_db)):
+    return orders.place_order(request=request, user=current_user, db=db)
 
 
 @router.get('/all', response_model=list[order.Order])

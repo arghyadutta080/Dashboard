@@ -4,15 +4,15 @@ from ..models import Product, Order
 from ..schemas import user, order
 
 
-def place_order(request: order.OrderCreate, db: Session):
-    if (request.order_date and request.customer_id and request.product_id and request.quantity):
+def place_order(request: order.OrderCreate, user: user.User, db: Session):
+    if (request.order_date and request.product_id and request.quantity):
         product = db.query(Product).filter(
             Product.id == request.product_id).first()
         if not product:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Product not found")
         new_order = Order(
-            order_date=request.order_date, customer_id=request.customer_id, product_id=request.product_id, quantity=request.quantity
+            order_date=request.order_date, customer_id=user.id, product_id=request.product_id, quantity=request.quantity
         )
         db.add(new_order)
         db.commit()
