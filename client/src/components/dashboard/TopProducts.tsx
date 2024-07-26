@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { FiAward, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { userData } from "../../../utils/constants/userData";
-import { User } from "../../../utils/types/userData";
+import { User } from "../../../lib/types/userData";
 
 const ShuffleSortTable = () => {
   return (
-    <div >
+    <div>
       <Table />
     </div>
   );
