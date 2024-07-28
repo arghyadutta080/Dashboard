@@ -8,7 +8,7 @@ from typing import Annotated
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="user/login")
-router = APIRouter(prefix="/user", tags=["Users"])
+router = APIRouter(prefix="/api/v1/user", tags=["Users"])
 
 
 @router.post('/signup', response_model=user.User)

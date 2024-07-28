@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useStore } from "@/lib/store/user";
 import { useAuthStore } from "@/lib/store/authState";
 
@@ -9,8 +9,8 @@ type SessionProviderProps = {
 };
 
 const SessionProvider: React.FC<SessionProviderProps> = ({ profile }) => {
-  const { setUser } = useStore((state) => ({
-    // useStore from Zustand custom store
+  const { user, setUser } = useStore((state) => ({    // useStore from Zustand custom store
+    user: state.user,
     setUser: state.setUser,
   }));
 
@@ -18,10 +18,10 @@ const SessionProvider: React.FC<SessionProviderProps> = ({ profile }) => {
     auth: state.auth,
   }));
 
-  const userProfile = async () => {
+  const userProfile = useCallback(async () => {
     const user = await profile();
-    setUser(user); // user state update by setUser from Zustand custom store
-  };
+    setUser(user);    // user state update by setUser from Zustand custom store
+  }, [user]);
 
   useEffect(() => {
     userProfile();

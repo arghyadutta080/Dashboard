@@ -7,7 +7,7 @@ from ..controllers import orders
 from . import users
 
 
-router = APIRouter(prefix="/order", tags=["Order Product"])
+router = APIRouter(prefix="/api/v1/order", tags=["Order Product"])
 
 
 @router.post('/place', response_model=order.Order)

@@ -7,7 +7,7 @@ from ..controllers import products
 from . import users
 
 
-router = APIRouter(prefix="/product", tags=["Product"])
+router = APIRouter(prefix="/api/v1/product", tags=["Product"])
 
 
 @router.post('/add', response_model=product.Product)

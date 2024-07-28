@@ -1,23 +1,21 @@
 import { getCookie } from "@/app/action";
+import { APIinstance } from "../../axiosConfig";
 import catchErrorFunc from "@/utils/functions/errorResponseLog";
-import { APIinstance } from "../axiosConfig"
 
-
-export const getUserProfile = async () => {
+export const getAllOrders = async () => {
     const token = await getCookie()
     try {
         if (token) {
             const response = await APIinstance.get(
-                '/user/profile', {
+                '/order/all', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
             }
             )
-            // console.log("userProfile func:", response?.data)
             return response?.data;
         }
     } catch (error) {
-        catchErrorFunc(error)
+        return catchErrorFunc(error)
     }
 }

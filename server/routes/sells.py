@@ -8,7 +8,7 @@ from ..controllers import sells
 from . import users
 
 
-router = APIRouter(prefix="/sell", tags=["Sell Product"])
+router = APIRouter(prefix="/api/v1/sell", tags=["Sell Product"])
 
 
 @router.post('/delivered', response_model=sell.Sell)
