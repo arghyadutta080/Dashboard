@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/common/Navbar";
 import { Footer } from "@/components/common/Footer";
+import { Toaster } from "react-hot-toast";
+import SessionServerProvider from "@/components/common/SessionServerProvider";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +23,8 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
+        <Toaster position="top-center" reverseOrder={false} />
+        <SessionServerProvider />
         <Footer />
       </body>
     </html>

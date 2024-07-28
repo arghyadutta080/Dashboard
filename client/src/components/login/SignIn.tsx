@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { user } from '../../../lib/types/user';
-import { useRouter } from 'next/navigation';
-import { emailPasswordAuth } from '../../../utils/functions/auth/authorizeClient';
+import React, { useState } from "react";
+import { user } from "@/lib/types/user";
+import { useRouter } from "next/navigation";
+import { emailPasswordAuth } from "@/utils/functions/auth/authorizeClient";
+import { useAuthStore } from "@/lib/store/authState";
 
 const SignIn: React.FC = () => {
   const router = useRouter();
@@ -9,6 +10,9 @@ const SignIn: React.FC = () => {
     username: "",
     password: "",
   });
+  const { setAuth } = useAuthStore((state) => ({
+    setAuth: state.setAuth,
+  }));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,12 +24,10 @@ const SignIn: React.FC = () => {
 
   const handleEmailAndPassWordAuth = async () => {
     // setIsLoading(true);
-    const response = await emailPasswordAuth(userDetails, router);
+    const response = await emailPasswordAuth(userDetails, router, setAuth);
     // if (response) setIsLoading(false);
     console.log(response);
   };
-
-
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

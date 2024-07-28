@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
-import { recentOrders } from "../../../utils/constants/recentOrders";
+import { recentOrders } from "@/utils/constants/recentOrders";
 
 const RevealCards = () => {
   return (

@@ -1,4 +1,4 @@
-import { User } from "../../lib/types/userData";
+import { User } from "@/lib/types/userData";
 
 export const userData: User[] = [
     {

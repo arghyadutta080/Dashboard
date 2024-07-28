@@ -1,4 +1,4 @@
-import { footerRoutes } from "../../../utils/constants/footerRoutes";
+import { footerRoutes } from "@/utils/constants/footerRoutes";
 
 export const Footer = () => {
   return (
