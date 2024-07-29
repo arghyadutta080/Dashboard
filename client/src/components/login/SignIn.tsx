@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { user } from "@/lib/types/user";
 import { useRouter } from "next/navigation";
 import { emailPasswordAuth } from "@/utils/functions/auth/authorizeClient";
-import { useAuthStore } from "@/lib/store/authState";
 import { useStore } from "@/lib/store/user";
 
 const SignIn: React.FC = () => {
@@ -11,10 +10,6 @@ const SignIn: React.FC = () => {
     username: "",
     password: "",
   });
-
-  const { setAuth } = useAuthStore((state) => ({
-    setAuth: state.setAuth,
-  }));
 
   const {setUser} = useStore((state) => ({
     setUser: state.setUser
@@ -30,7 +25,7 @@ const SignIn: React.FC = () => {
 
   const handleEmailAndPassWordAuth = async () => {
     // setIsLoading(true);
-    const response = await emailPasswordAuth(userDetails, router, setAuth, setUser);
+    const response = await emailPasswordAuth(userDetails, router, setUser);
     // if (response) setIsLoading(false);
     console.log(response);
   };

@@ -3,7 +3,7 @@
 
 import { ProductData } from "@/lib/types/dashboard/product";
 import { getTopProducts } from "@/utils/functions/dashboard/dashboardDetails";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   PieChart,
   Pie,
@@ -14,27 +14,29 @@ import {
 } from "recharts";
 import CircleLoader from "react-spinners/ClipLoader";
 
-
 const ProductsPieChart: React.FC = () => {
   const [data, setData] = useState<ProductData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const dataFetchedRef = useRef(false);
 
   // Define colors for the pie chart
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF6384"];
-     
+
   useEffect(() => {
     const getData = async () => {
       try {
-        if (data.length > 0) return; 
-        const topProducts = await getTopProducts();
-        setData(topProducts);
-        // console.log(topProducts);
-        setLoading(false);
+          const topProducts = await getTopProducts();
+          setData(topProducts);
+          setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
-    getData();
+
+    if (!dataFetchedRef.current) {    // check with useRef to prevent multiple calls by useEffect
+      dataFetchedRef.current = true;
+      getData();
+    }
   }, []);
 
   return (

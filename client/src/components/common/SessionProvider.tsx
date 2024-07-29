@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useStore } from "@/lib/store/user";
-import { useAuthStore } from "@/lib/store/authState";
 import { getUserProfile } from "@/api/auth/userProfile";
 
 
@@ -12,27 +11,26 @@ const SessionProvider: React.FC = () => {
     setUser: state.setUser,
   }));
 
-  const { auth } = useAuthStore((state) => ({
-    auth: state.auth,
-  }));
+  const dataFetchedRef = useRef(false);
 
-  const userProfile = useCallback(async () => {
+  const userProfile = useCallback(async () => {   // useCallback to prevent multiple calls by useEffect during rendering until the global user state is updated
     try {
-      if (user === undefined) {
-        const userInfo = await getUserProfile();
-        setUser(userInfo);    // user state update by setUser from Zustand custom store
-      }
+      const userInfo = await getUserProfile();
+      setUser(userInfo);    // user state update by setUser from Zustand custom store
     } catch (error) {
       console.log(error);
     }
-  }, [user]);
+  }, [user]);  
   
   console.log("Session provider running ...")
   console.log("In SessionProvider", user)
 
   useEffect(() => {
-    userProfile();
-  }, [auth]);
+    if (!dataFetchedRef.current) {    // check with useRef to prevent multiple calls by useEffect
+      dataFetchedRef.current = true;
+      userProfile();
+    }
+  }, []);   // useEffect dependency on auth state, which changes on login/logout
 
   return <></>;
 };
