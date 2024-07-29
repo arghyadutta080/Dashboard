@@ -20,3 +20,7 @@ export const getCookie = async () => {
     console.log("server action: ", cookie?.value)
     return cookie?.value
 }
+
+export const deleteCookie = async () => {
+    cookies().delete('access_token')
+}

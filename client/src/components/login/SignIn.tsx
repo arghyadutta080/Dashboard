@@ -3,6 +3,7 @@ import { user } from "@/lib/types/user";
 import { useRouter } from "next/navigation";
 import { emailPasswordAuth } from "@/utils/functions/auth/authorizeClient";
 import { useAuthStore } from "@/lib/store/authState";
+import { useStore } from "@/lib/store/user";
 
 const SignIn: React.FC = () => {
   const router = useRouter();
@@ -10,9 +11,14 @@ const SignIn: React.FC = () => {
     username: "",
     password: "",
   });
+
   const { setAuth } = useAuthStore((state) => ({
     setAuth: state.setAuth,
   }));
+
+  const {setUser} = useStore((state) => ({
+    setUser: state.setUser
+  }))
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,7 +30,7 @@ const SignIn: React.FC = () => {
 
   const handleEmailAndPassWordAuth = async () => {
     // setIsLoading(true);
-    const response = await emailPasswordAuth(userDetails, router, setAuth);
+    const response = await emailPasswordAuth(userDetails, router, setAuth, setUser);
     // if (response) setIsLoading(false);
     console.log(response);
   };

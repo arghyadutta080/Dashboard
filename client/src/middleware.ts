@@ -5,12 +5,14 @@ export function middleware(request: NextRequest) {
     let cookie = request.cookies.get('access_token')
     const path = request.nextUrl.pathname;
 
+    const headers = new Headers(request.headers);
+    headers.set("x-current-path", request.nextUrl.pathname);
+
     if (!cookie && path !== '/sign-in') {
         return NextResponse.redirect(new URL("/sign-in", request.url));
-    } else if (cookie && (path === "/sign-in" || path === "/sign-up")) {
-        return NextResponse.redirect(new URL('/', request.url))
-    }
-    return NextResponse.next()
+    } 
+    
+    return NextResponse.next();
 }
 
 export const config = {

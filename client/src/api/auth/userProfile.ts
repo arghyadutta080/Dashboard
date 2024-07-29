@@ -16,7 +16,7 @@ export const getUserProfile = async () => {
             )
             // console.log("userProfile func:", response?.data)
             return response?.data;
-        }
+        }  
     } catch (error) {
         catchErrorFunc(error)
     }

@@ -57,7 +57,6 @@ def get_total_sale(user: user.User, db: Session):
         ).where(Order.delivered == True)
 
         total_sale = db.execute(total_sale).scalar()
-        print(total_sale)
 
         return total_sale
     else:

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/common/Navbar";
 import { Footer } from "@/components/common/Footer";
 import { Toaster } from "react-hot-toast";
-import SessionServerProvider from "@/components/common/SessionServerProvider";
+import SessionProvider from "@/components/common/SessionProvider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +24,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Toaster position="top-center" reverseOrder={false} />
-        <SessionServerProvider />
+        <SessionProvider/>
         <Footer />
       </body>
     </html>
