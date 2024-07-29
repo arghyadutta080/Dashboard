@@ -7,9 +7,24 @@ import { getOrders, getProducts, getSells } from '@/utils/functions/dashboard/da
 const Dashboard = () => {
   
   const items: any = [
-    { title: "Total Sales", number: getSells(), change: 10, icon: "/sales.svg" },
-    { title: "Total Orders", number: getOrders(), change: -5, icon: "/orders.svg" }, // Assuming default icon for orders
-    { title: "Total Products", number: getProducts(), change: 8, icon: "/products.svg" }, // Assuming default icon for products
+    {
+      title: "Total Sales",
+      number: getSells() || "Loading...",
+      change: 10,
+      icon: "/sales.svg",
+    },
+    {
+      title: "Total Orders",
+      number: getOrders() || "Loading...",
+      change: -5,
+      icon: "/orders.svg",
+    }, 
+    {
+      title: "Total Products",
+      number: getProducts() || "Loading...",
+      change: 8,
+      icon: "/products.svg",
+    }, 
     { title: "Total Users", number: 500, change: 2, icon: "/user.svg" },
   ];
 
