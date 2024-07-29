@@ -21,6 +21,16 @@ def view_sells_info(current_user: Annotated[user.User, Depends(users.get_user_pr
     return sells.get_sells(user=current_user, db=db)
 
 
+@router.get('/total-sell')
+def get_total_sell(current_user: Annotated[user.User, Depends(users.get_user_profile)], db: Session = Depends(getDB.get_db)):
+    return sells.get_total_sale(user=current_user, db=db)
+
+
+@router.get('/top-products')
+def top_5_products(current_user: Annotated[user.User, Depends(users.get_user_profile)], db: Session = Depends(getDB.get_db)):
+    return sells.get_top_5_sold_products(user=current_user, db=db)
+
+
 @router.get('/date/count')
 def view_datewise_total_sell(current_user: Annotated[user.User, Depends(users.get_user_profile)], db: Session = Depends(getDB.get_db)):
     return sells.get_datewise_sell_count(user=current_user, db=db)

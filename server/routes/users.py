@@ -7,7 +7,7 @@ from ..controllers import users
 from typing import Annotated
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="user/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/user/login")
 router = APIRouter(prefix="/api/v1/user", tags=["Users"])
 
 

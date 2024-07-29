@@ -1,28 +1,38 @@
 // components/PieChart.tsx
 "use client";
 
-import React from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { ProductData } from "@/lib/types/dashboard/product";
+import { getTopProducts } from "@/utils/functions/dashboard/dashboardDetails";
+import React, { useEffect, useState } from "react";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
-// Define the data type
-interface ProductData {
-  name: string;
-  sales: number;
-}
-
-// Example data for the top 5 products
-const data: ProductData[] = [
-  { name: 'Product A', sales: 400 },
-  { name: 'Product B', sales: 300 },
-  { name: 'Product C', sales: 300 },
-  { name: 'Product D', sales: 200 },
-  { name: 'Product E', sales: 278 },
-];
-
-// Define colors for the pie chart
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6384'];
 
 const ProductsPieChart: React.FC = () => {
+  const [data, setData] = useState<ProductData[]>([]);
+
+  // Define colors for the pie chart
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF6384"];
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const topProducts = await getTopProducts();
+        setData(topProducts);
+        // console.log(topProducts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <ResponsiveContainer width="100%" height={400}>
       <PieChart>

@@ -1,27 +1,41 @@
 "use client";
 
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-interface SalesData {
-  date: string;
-  sales: number;
-}
-
-const data: SalesData[] = [
-  { date: '2024-07-15', sales: 120 },
-  { date: '2024-07-16', sales: 98 },
-  { date: '2024-07-17', sales: 150 },
-  { date: '2024-07-18', sales: 130 },
-  { date: '2024-07-19', sales: 110 },
-  { date: '2024-07-20', sales: 170 },
-  { date: '2024-07-21', sales: 90 },
-];
+import { SalesData } from "@/lib/types/dashboard/sales";
+import { getWeeklySalesData } from "@/utils/functions/dashboard/getLast7Days";
+import React, { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const SalesBarChart: React.FC = () => {
+  const [data, setData] = useState<SalesData[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const salesData = await getWeeklySalesData();
+        setData(salesData);
+        // console.log(salesData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+      <BarChart
+        data={data}
+        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+      >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />
         <YAxis />

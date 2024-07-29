@@ -89,7 +89,8 @@ const NavRight = () => {
   const { user } = useStore((state) => ({
     user: state.user,
   }));
-  console.log(user);
+  // console.log(user);
+
   return (
     <div className="flex items-center gap-4">
       {!user ? (
@@ -97,7 +98,7 @@ const NavRight = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-4 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent font-medium rounded-md whitespace-nowrap"
+            className="px-4 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-medium rounded-md whitespace-nowrap"
           >
             Sign in
           </motion.button>
