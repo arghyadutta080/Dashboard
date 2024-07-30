@@ -12,16 +12,21 @@ export const emailPasswordAuth = async (userInfo: user, router: AppRouterInstanc
     });
 
     if (response) {
+        if (response?.detail) {
+            makeToast(400, response?.detail);
+            return;
+        }
         await setCookie(response);
         const user = await getUserProfile();
-        console.log("authorizeClient func:", user);
+        
         if (user && user.role === "ADMIN") {
             setUser(user);      // set the global user state
             router.push("/");
             makeToast(200, "Login successful");
         } else {
             await deleteCookie()
-            makeToast(400, "You are not authorized to access this page");
+            makeToast(400, "You are not authorized to login");
+            return;
         }
     }
     return response;

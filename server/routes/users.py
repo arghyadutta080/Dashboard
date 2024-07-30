@@ -5,10 +5,12 @@ from ..utils import getDB
 from ..schemas import user
 from ..controllers import users
 from typing import Annotated
+from fastapi_limiter.depends import RateLimiter
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/user/login")
-router = APIRouter(prefix="/api/v1/user", tags=["Users"])
+router = APIRouter(prefix="/api/v1/user",
+                   tags=["Users"], dependencies=[Depends(RateLimiter(times=100, minutes=1))])
 
 
 @router.post('/signup', response_model=user.User)

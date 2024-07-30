@@ -1,4 +1,3 @@
-// components/PieChart.tsx
 "use client";
 
 import { ProductData } from "@/lib/types/dashboard/product";
@@ -26,7 +25,7 @@ const ProductsPieChart: React.FC = () => {
     const getData = async () => {
       try {
           const topProducts = await getTopProducts();
-          setData(topProducts);
+          topProducts && setData(topProducts);
           setLoading(false);
       } catch (error) {
         console.log(error);

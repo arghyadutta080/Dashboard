@@ -5,9 +5,11 @@ from ..utils import getDB
 from ..schemas import user, product
 from ..controllers import products
 from . import users
+from fastapi_limiter.depends import RateLimiter
 
 
-router = APIRouter(prefix="/api/v1/product", tags=["Product"])
+router = APIRouter(prefix="/api/v1/product",
+                   tags=["Product"], dependencies=[Depends(RateLimiter(times=100, minutes=1))])
 
 
 @router.post('/add', response_model=product.Product)

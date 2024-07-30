@@ -1,7 +1,7 @@
 "use client";
 
 import { SalesData } from "@/lib/types/dashboard/sales";
-import { getWeeklySalesData } from "@/utils/functions/dashboard/getLast7Days";
+import { getWeeklySalesData } from "@/utils/functions/dashboard/dashboardDetails";
 import React, { useEffect, useRef, useState } from "react";
 import {
   BarChart,
@@ -15,6 +15,7 @@ import {
 } from "recharts";
 import CircleLoader from "react-spinners/ClipLoader";
 
+
 const SalesBarChart: React.FC = () => {
   const [data, setData] = useState<SalesData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,7 +25,7 @@ const SalesBarChart: React.FC = () => {
     const getData = async () => {
       try {
         const salesData = await getWeeklySalesData();
-        setData(salesData);
+        salesData && setData(salesData);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -47,7 +48,6 @@ const SalesBarChart: React.FC = () => {
         <CircleLoader
           color={"#8884d8"}
           loading={true}
-          // cssOverride={override}
           size={220}
           aria-label="Loading Spinner"
           data-testid="loader"

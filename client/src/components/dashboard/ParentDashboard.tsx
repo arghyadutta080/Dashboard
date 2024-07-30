@@ -1,4 +1,3 @@
-// Update in parentDash.tsx
 import React from 'react';
 import Card from './Card';
 import { getOrders, getProducts, getSells } from '@/utils/functions/dashboard/dashboardDetails';
