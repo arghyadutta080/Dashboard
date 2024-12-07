@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# E-Commerce Dashboard  
 
-## Getting Started
+The **E-Commerce Dashboard** is a robust web application designed to enable administrators to efficiently manage sales, products, and customer orders. The app employs **Role-Based Access Control (RBAC)** to ensure sensitive functionalities remain restricted to authorized users only, while incorporating **Rate Limiting** for enhanced security against abuse or Denial-of-Service (DoS) attacks.
 
-First, run the development server:
+## Features  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Role-Based Access Control (RBAC)**:  
+  Only admins can manage sales, products, and customer orders, ensuring secure access to critical functionalities. Regular customers have no access to admin features.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Rate Limiting for Security**:  
+  Prevents Denial-of-Service (DoS) attacks and ensures the app remains stable and performant under heavy traffic, implemented using **Redis**.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Order and Inventory Management**:  
+  Admins can streamline operations through an intuitive interface, managing sales, tracking orders, and updating product details.  
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **User-Friendly Interface**:  
+  A responsive design ensures seamless navigation and accessibility across all devices.  
 
-## Learn More
+## Tech Stack  
 
-To learn more about Next.js, take a look at the following resources:
+<a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">  
+  <img src="https://skillicons.dev/icons?i=typescript" alt="TypeScript" width="37" height="37"/>  
+</a>  
+<a href="https://nextjs.org/" target="_blank" rel="noreferrer">  
+  <img src="https://skillicons.dev/icons?i=nextjs" alt="Next.js" width="37" height="37"/>  
+</a>  
+<a href="https://www.python.org/" target="_blank" rel="noreferrer">  
+  <img src="https://skillicons.dev/icons?i=python" alt="Python" width="37" height="37"/>  
+</a>  
+<a href="https://fastapi.tiangolo.com/" target="_blank" rel="noreferrer">  
+  <img src="https://skillicons.dev/icons?i=fastapi" alt="FastAPI" width="37" height="37"/>  
+</a>  
+<a href="https://www.sqlite.org/" target="_blank" rel="noreferrer">  
+  <img src="https://skillicons.dev/icons?i=sqlite" alt="SQLite" width="37" height="37"/>  
+</a>  
+<a href="https://redis.io/" target="_blank" rel="noreferrer">  
+  <img src="https://skillicons.dev/icons?i=redis" alt="Redis" width="37" height="37"/>  
+</a>  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions to the project are welcome! To contribute, fork the repository and create a new branch for your changes. Once you have made your changes, create a pull request to merge your branch into the main repository.
